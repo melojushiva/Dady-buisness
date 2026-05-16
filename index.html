@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Srinivas Wood And Interiors – Carpentry & Interior Design</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            wood:    { DEFAULT: '#6B3F1F', dark: '#3E1F0A', light: '#A0622A', pale: '#F5EDE3' },
+            charcoal:{ DEFAULT: '#2C2C2C', light: '#4A4A4A' },
+            cream:   '#FAF7F2',
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            body:    ['Lato', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Lato', sans-serif; background: #FAF7F2; color: #2C2C2C; }
+
+    /* ── grain overlay ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: .35;
+    }
+
+    /* ── wood-ring decorative line ── */
+    .ring-accent {
+      display: inline-block;
+      width: 48px; height: 3px;
+      background: linear-gradient(90deg, #A0622A, #6B3F1F);
+      border-radius: 2px;
+    }
+
+    /* ── hero ── */
+    .hero-bg {
+      background-color: #3E1F0A;
+      background-image:
+        linear-gradient(to right, rgba(20,8,2,.97) 38%, rgba(20,8,2,.55) 100%),
+        url('https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=1800&auto=format&fit=crop&q=90');
+      background-size: cover;
+      background-position: center center;
+    }
+
+    /* ── card hover ── */
+    .service-card { transition: transform .3s ease, box-shadow .3s ease; }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(62,31,10,.15); }
+
+    /* ── gallery ── */
+    .gallery-item { overflow: hidden; }
+    .gallery-item img { transition: transform .5s ease; width: 100%; height: 100%; object-fit: cover; }
+    .gallery-item:hover img { transform: scale(1.07); }
+
+    /* ── animations ── */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+    .fade-up { opacity: 0; animation: fadeUp .7s ease forwards; }
+    .delay-1 { animation-delay: .15s; }
+    .delay-2 { animation-delay: .3s; }
+    .delay-3 { animation-delay: .45s; }
+
+    /* ── nav link underline ── */
+    .nav-link { position:relative; }
+    .nav-link::after {
+      content:''; position:absolute; bottom:-2px; left:0;
+      width:0; height:2px; background:#A0622A;
+      transition: width .3s ease;
+    }
+    .nav-link:hover::after { width:100%; }
+
+    /* ── WhatsApp pulse ── */
+    @keyframes pulse-wa { 0%,100%{ box-shadow:0 0 0 0 rgba(37,211,102,.45); } 70%{ box-shadow:0 0 0 12px rgba(37,211,102,0); } }
+    .wa-btn { animation: pulse-wa 2.2s infinite; }
+
+    /* scrollbar */
+    ::-webkit-scrollbar { width:6px; }
+    ::-webkit-scrollbar-track { background:#FAF7F2; }
+    ::-webkit-scrollbar-thumb { background:#A0622A; border-radius:3px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     NAVBAR
+════════════════════════════════════════ -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+     style="background:rgba(62,31,10,.92); backdrop-filter:blur(10px);">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="#hero" class="flex items-center gap-3">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <rect x="4" y="14" width="24" height="4" rx="1" fill="#A0622A"/>
+        <rect x="9" y="7"  width="4"  height="18" rx="1" fill="#A0622A"/>
+        <rect x="19" y="7" width="4"  height="18" rx="1" fill="#A0622A"/>
+        <rect x="9" y="13" width="14" height="4" rx="1" fill="#F5EDE3" opacity=".3"/>
+      </svg>
+      <span class="font-display text-xl font-bold text-wood-pale tracking-wide">
+        Srinivas <span class="text-wood-light">Wood And Interiors</span>
+      </span>
+    </a>
+    <!-- Desktop links -->
+    <ul class="hidden md:flex gap-8 text-wood-pale text-sm font-body font-bold tracking-widest uppercase">
+      <li><a href="#services" class="nav-link hover:text-wood-light transition-colors">Services</a></li>
+      <li><a href="#gallery"  class="nav-link hover:text-wood-light transition-colors">Gallery</a></li>
+      <li><a href="#why-us"   class="nav-link hover:text-wood-light transition-colors">Why Us</a></li>
+      <li><a href="#contact"  class="nav-link hover:text-wood-light transition-colors">Contact</a></li>
+    </ul>
+    <!-- Mobile hamburger -->
+    <button id="menu-btn" class="md:hidden text-wood-pale focus:outline-none">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-wood-dark border-t border-wood/30">
+    <ul class="flex flex-col py-4 px-6 gap-4 text-wood-pale text-sm font-bold tracking-widest uppercase">
+      <li><a href="#services" class="hover:text-wood-light" onclick="closeMobile()">Services</a></li>
+      <li><a href="#gallery"  class="hover:text-wood-light" onclick="closeMobile()">Gallery</a></li>
+      <li><a href="#why-us"   class="hover:text-wood-light" onclick="closeMobile()">Why Us</a></li>
+      <li><a href="#contact"  class="hover:text-wood-light" onclick="closeMobile()">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     HERO  –  3D Animated (Responsive)
+════════════════════════════════════════ -->
+<style>
+  #hero-canvas { position:absolute;inset:0;width:100%;height:100%;display:block; }
+  #hero-text { position:relative;z-index:10;min-height:100vh;display:flex;align-items:center; }
+  #hero-text h1 { font-size:clamp(2rem,7vw,4.5rem); }
+  #hero-text .hero-sub { font-size:clamp(0.9rem,2.5vw,1.125rem); }
+  #hero-text .hero-btns { flex-wrap:wrap; gap:12px; }
+  #hero-text .btn-primary {
+    background:#A0622A;color:#fff;font-size:clamp(0.7rem,2vw,0.875rem);
+    padding:clamp(10px,2vw,16px) clamp(20px,4vw,32px);
+    border-radius:6px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    display:inline-block;text-decoration:none;transition:background .3s;
+  }
+  #hero-text .btn-secondary {
+    border:1.5px solid rgba(245,237,227,0.4);color:#F5EDE3;
+    font-size:clamp(0.7rem,2vw,0.875rem);
+    padding:clamp(10px,2vw,16px) clamp(20px,4vw,32px);
+    border-radius:6px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    display:inline-block;text-decoration:none;transition:border-color .3s,color .3s;
+  }
+  #hero-text .btn-secondary:hover { border-color:#A0622A;color:#A0622A; }
+  #hero-text .btn-primary:hover { background:#6B3F1F; }
+  @media(max-width:480px){
+    #hero-text .hero-btns { justify-content:center; }
+    #hero-text { text-align:center; }
+  }
+</style>
+
+<section id="hero" style="position:relative;min-height:100vh;overflow:hidden;background:#1a0a03;">
+
+  <canvas id="hero-canvas"></canvas>
+
+  <!-- vignette -->
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(20,8,2,0.4) 0%,rgba(20,8,2,0) 40%,rgba(20,8,2,0.65) 100%);pointer-events:none;"></div>
+
+  <!-- Text -->
+  <div id="hero-text">
+    <div style="max-width:72rem;margin:0 auto;padding:clamp(5rem,12vw,7rem) clamp(1rem,5vw,1.5rem) clamp(3rem,8vw,5rem);width:100%;">
+      <div style="max-width:min(600px,100%);">
+        <p class="fade-up font-body" style="color:#A0622A;text-transform:uppercase;letter-spacing:.22em;font-size:clamp(0.65rem,2vw,0.8rem);margin-bottom:1rem;">
+          Premium Wood Work &amp; Interior Design
+        </p>
+        <h1 class="fade-up delay-1 font-display font-black leading-tight" style="color:#F5EDE3;margin-bottom:0;">
+          Srinivas Wood<br/>
+          <span style="color:#A0622A;">And Interiors</span>
+        </h1>
+        <p class="fade-up delay-2 font-body hero-sub" style="color:rgba(245,237,227,0.70);margin-top:1.25rem;line-height:1.7;max-width:480px;">
+          Custom wood furniture, windows, doors, pooja room units, interior carpentry and repairs — built to endure, designed to inspire.
+        </p>
+        <div class="fade-up delay-3 hero-btns" style="display:flex;margin-top:2rem;">
+          <a href="#contact" class="btn-primary">Get a Free Quote</a>
+          <a href="#gallery" class="btn-secondary">View Our Work</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- scroll hint -->
+  <div style="position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0.45;z-index:10;">
+    <span class="font-body" style="color:#F5EDE3;font-size:10px;letter-spacing:.2em;text-transform:uppercase;">Scroll</span>
+    <div style="width:1px;height:32px;background:linear-gradient(to bottom,#F5EDE3,transparent);"></div>
+  </div>
+</section>
+
+<!-- Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  const canvas  = document.getElementById('hero-canvas');
+  const section = document.getElementById('hero');
+
+  const W = () => section.offsetWidth;
+  const H = () => section.offsetHeight;
+  const isMobile = () => W() < 600;
+  const isTablet = () => W() < 900;
+
+  /* ── Renderer ── */
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias:!isMobile(), alpha:true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile() ? 1.5 : 2));
+  renderer.setSize(W(), H());
+  renderer.shadowMap.enabled = !isMobile();
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.2;
+
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x1a0a03, isMobile() ? 0.06 : 0.045);
+
+  /* ── Camera — FOV widens on mobile so scene stays visible ── */
+  const getFOV = () => isMobile() ? 70 : isTablet() ? 58 : 50;
+  const getCamZ = () => isMobile() ? 11 : isTablet() ? 10 : 9;
+
+  const camera = new THREE.PerspectiveCamera(getFOV(), W()/H(), 0.1, 100);
+  camera.position.set(0, isMobile() ? 2 : 2.5, getCamZ());
+  camera.lookAt(0, 0.5, 0);
+
+  /* ── Lights ── */
+  scene.add(new THREE.AmbientLight(0x3d1a06, 2.8));
+
+  const sun = new THREE.DirectionalLight(0xffcc88, 3.5);
+  sun.position.set(5, 10, 5);
+  if(!isMobile()){
+    sun.castShadow = true;
+    sun.shadow.mapSize.set(512, 512);
+    sun.shadow.camera.near  = 0.5; sun.shadow.camera.far   = 40;
+    sun.shadow.camera.left  = -10; sun.shadow.camera.right = 10;
+    sun.shadow.camera.top   = 10;  sun.shadow.camera.bottom= -10;
+  }
+  scene.add(sun);
+
+  const fill = new THREE.PointLight(0xa0622a, 4, 20);
+  fill.position.set(-4, 3, 2); scene.add(fill);
+
+  const rim = new THREE.PointLight(0xff9955, 2.5, 15);
+  rim.position.set(3, 5, -3); scene.add(rim);
+
+  /* ── Helper ── */
+  const woodColors = [0x8B5E3C, 0xA0622A, 0x6B3F1F, 0xC4813A, 0x7A4828];
+  const wMat = (hex, rough=0.85, metal=0.1) =>
+    new THREE.MeshStandardMaterial({ color:hex, roughness:rough, metalness:metal });
+
+  /* ── Floor ── */
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(22,22,8,8), wMat(0x4a2a0e,0.9,0.05));
+  floor.rotation.x = -Math.PI/2; floor.position.y = -1.8;
+  floor.receiveShadow = true; scene.add(floor);
+
+  for(let i=-5;i<=5;i++){
+    const pl = new THREE.Mesh(new THREE.BoxGeometry(0.04,0.01,22), wMat(0x3a1e08,0.95));
+    pl.position.set(i*1.1, -1.79, 0); scene.add(pl);
+  }
+
+  /* ── Back Wall ── */
+  const backWall = new THREE.Mesh(new THREE.PlaneGeometry(22,12), wMat(0x2a1206,0.95,0.02));
+  backWall.position.set(0,4,-7); backWall.receiveShadow=true; scene.add(backWall);
+
+  /* Wall panels — fewer on mobile */
+  const panelRange = isMobile() ? 2 : 4;
+  for(let i=-panelRange;i<=panelRange;i++){
+    const pan = new THREE.Mesh(new THREE.BoxGeometry(1.8,6,0.06), wMat(woodColors[Math.abs(i)%5],0.88));
+    pan.position.set(i*2.2,1.2,-6.9); pan.castShadow=true; pan.receiveShadow=true; scene.add(pan);
+    const gr = new THREE.Mesh(new THREE.BoxGeometry(0.04,6,0.08), wMat(0x1a0a03,0.99));
+    gr.position.set(i*2.2+0.93,1.2,-6.85); scene.add(gr);
+  }
+
+  /* ── Cupboards — hidden on small mobile ── */
+  const makeCupboard = (x,y,z,w,h,d,col) => {
+    const g = new THREE.Group();
+    const body = new THREE.Mesh(new THREE.BoxGeometry(w,h,d), wMat(col,0.82));
+    body.castShadow=true; body.receiveShadow=true; g.add(body);
+    const doorL = new THREE.Mesh(new THREE.BoxGeometry(w/2-0.04,h-0.12,0.07), wMat(col+0x0a0503,0.75));
+    doorL.position.set(-w/4+0.02,0,d/2+0.03); doorL.castShadow=true; g.add(doorL);
+    const doorR = doorL.clone(); doorR.position.x=w/4-0.02; g.add(doorR);
+    const hL = new THREE.Mesh(new THREE.CylinderGeometry(0.03,0.03,0.25,8), wMat(0xc8a050,0.3,0.8));
+    hL.rotation.z=Math.PI/2; hL.position.set(-0.08,0,d/2+0.07); g.add(hL);
+    const hR = hL.clone(); hR.position.x=0.08+w/2-0.15; g.add(hR);
+    g.position.set(x,y,z); return g;
+  };
+
+  if(!isMobile()){
+    scene.add(makeCupboard(-4.5,0.1,-5.5,2.2,3.8,0.9,0x7A4828));
+    scene.add(makeCupboard( 4.5,0.1,-5.5,2.2,3.8,0.9,0x8B5E3C));
+  }
+
+  /* ── Table ── */
+  const tableTop = new THREE.Mesh(new THREE.BoxGeometry(isMobile()?2:3.2,0.15,1.4), wMat(0xA0622A,0.78));
+  tableTop.position.set(0,-0.5,1.5); tableTop.castShadow=true; tableTop.receiveShadow=true; scene.add(tableTop);
+  [[-1.4,-0.7],[-1.4,0.7],[1.4,-0.7],[1.4,0.7]].forEach(([lx,lz])=>{
+    const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.07,0.09,1.1,8), wMat(0x6B3F1F,0.88));
+    leg.position.set(lx,-1.25,lz+1.5); leg.castShadow=true; scene.add(leg);
+  });
+
+  /* ── Floating planks — fewer on mobile ── */
+  const planks = [];
+  const plankData = [
+    {x:-3,  y:2.5, z:-1,   rx:0.3,  ry:0.5,  rz:0.1,  col:0xC4813A},
+    {x:3.5, y:3.2, z:-2,   rx:-0.2, ry:-0.4, rz:0.15, col:0x8B5E3C},
+    {x:1.5, y:4.5, z:-3,   rx:0.4,  ry:0.8,  rz:-0.1, col:0xA0622A},
+    {x:-2.5,y:4.8, z:-4,   rx:-0.3, ry:1.1,  rz:0.2,  col:0x7A4828},
+    {x:4.5, y:1.8, z:-1.5, rx:0.1,  ry:-0.6, rz:-0.15,col:0xC4813A},
+    {x:-4,  y:5.5, z:-2.5, rx:0.2,  ry:0.3,  rz:0.05, col:0x8B5E3C},
+  ];
+  const plankSlice = isMobile() ? plankData.slice(0,3) : plankData;
+  plankSlice.forEach(d=>{
+    const m = new THREE.Mesh(new THREE.BoxGeometry(isMobile()?1.2:1.8,0.12,0.5), wMat(d.col,0.8));
+    m.position.set(d.x,d.y,d.z); m.rotation.set(d.rx,d.ry,d.rz); m.castShadow=true;
+    m.userData={ox:d.x,oy:d.y,ry:d.ry,speed:0.3+Math.random()*0.4};
+    scene.add(m); planks.push(m);
+  });
+
+  /* ── Particles — fewer on mobile ── */
+  const pCount = isMobile() ? 80 : 220;
+  const pGeo = new THREE.BufferGeometry();
+  const pPos = new Float32Array(pCount*3);
+  for(let i=0;i<pCount;i++){
+    pPos[i*3]=(Math.random()-0.5)*16; pPos[i*3+1]=Math.random()*10-1; pPos[i*3+2]=(Math.random()-0.5)*10;
+  }
+  pGeo.setAttribute('position',new THREE.BufferAttribute(pPos,3));
+  const pMat = new THREE.PointsMaterial({color:0xffddaa,size:isMobile()?0.06:0.045,transparent:true,opacity:0.55});
+  scene.add(new THREE.Points(pGeo,pMat));
+
+  /* ── Touch / Mouse parallax ── */
+  let mx=0,my=0;
+  const onMove = (cx,cy) => {
+    mx=(cx/window.innerWidth-0.5)*2;
+    my=(cy/window.innerHeight-0.5)*2;
+  };
+  document.addEventListener('mousemove', e=>onMove(e.clientX,e.clientY));
+  document.addEventListener('touchmove', e=>{ if(e.touches[0]) onMove(e.touches[0].clientX,e.touches[0].clientY); },{passive:true});
+
+  /* ── Resize — fully adaptive ── */
+  let resizeTO;
+  window.addEventListener('resize',()=>{
+    clearTimeout(resizeTO);
+    resizeTO = setTimeout(()=>{
+      renderer.setSize(W(),H());
+      camera.aspect=W()/H();
+      camera.fov=getFOV();
+      camera.position.z=getCamZ();
+      camera.updateProjectionMatrix();
+      scene.fog.density = isMobile()?0.06:0.045;
+    },120);
+  });
+
+  /* ── Animate ── */
+  const clock = new THREE.Clock();
+  const parallaxStrength = () => isMobile() ? 0.2 : 0.6;
+  (function animate(){
+    requestAnimationFrame(animate);
+    const t=clock.getElapsedTime();
+
+    camera.position.x += (mx*parallaxStrength() - camera.position.x)*0.04;
+    camera.position.y += (-my*0.3+(isMobile()?2:2.5) - camera.position.y)*0.04;
+    camera.lookAt(0,0.5,0);
+
+    planks.forEach((p,i)=>{
+      p.position.y=p.userData.oy+Math.sin(t*p.userData.speed+i)*0.18;
+      p.rotation.y=p.userData.ry+Math.sin(t*0.3+i*1.2)*0.08;
+    });
+
+    const pp=pGeo.attributes.position.array;
+    for(let i=0;i<pCount;i++){ pp[i*3+1]+=0.003; if(pp[i*3+1]>9) pp[i*3+1]=-1; }
+    pGeo.attributes.position.needsUpdate=true;
+
+    fill.intensity=3.5+Math.sin(t*0.7)*0.8;
+    rim.intensity =2+Math.sin(t*0.5+1)*0.6;
+
+    renderer.render(scene,camera);
+  })();
+})();
+</script>
+
+<!-- ═══════════════════════════════════════
+     SERVICES
+════════════════════════════════════════ -->
+<section id="services" class="py-24 bg-cream">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <span class="ring-accent"></span>
+      <h2 class="font-display text-4xl font-bold text-wood-dark mt-4">Our Services</h2>
+      <p class="mt-3 text-charcoal-light font-body max-w-lg mx-auto">
+        Every piece is handcrafted with precision — from the first sketch to the final finish.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- Card 1 — Custom Wood Furniture -->
+      <div class="service-card bg-white rounded-2xl p-8 border border-wood-pale shadow-sm">
+        <div class="w-14 h-14 rounded-xl bg-wood-pale flex items-center justify-center mb-6">
+          <svg class="w-8 h-8 text-wood" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+            <rect x="2" y="13" width="20" height="7" rx="2" stroke="currentColor"/>
+            <path d="M5 13V9a1 1 0 011-1h12a1 1 0 011 1v4" stroke="currentColor" stroke-linecap="round"/>
+            <line x1="5" y1="20" x2="5" y2="22" stroke="currentColor" stroke-linecap="round"/>
+            <line x1="19" y1="20" x2="19" y2="22" stroke="currentColor" stroke-linecap="round"/>
+            <line x1="9" y1="8" x2="9" y2="13" stroke="currentColor" stroke-linecap="round"/>
+            <line x1="15" y1="8" x2="15" y2="13" stroke="currentColor" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl font-bold text-wood-dark">Custom Wood Furniture</h3>
+        <p class="mt-2 text-charcoal-light text-sm leading-relaxed font-body">
+          Beds, sofas frames, dining tables, study desks — any furniture built to your exact dimensions and taste using premium hardwood.
+        </p>
+      </div>
+
+      <!-- Card 2 — Windows -->
+      <div class="service-card bg-white rounded-2xl p-8 border border-wood-pale shadow-sm">
+        <div class="w-14 h-14 rounded-xl bg-wood-pale flex items-center justify-center mb-6">
+          <svg class="w-8 h-8 text-wood" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor"/>
+            <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor"/>
+            <line x1="12" y1="3" x2="12" y2="21" stroke="currentColor"/>
+            <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl font-bold text-wood-dark">Windows</h3>
+        <p class="mt-2 text-charcoal-light text-sm leading-relaxed font-body">
+          Wooden window frames, casement windows, sliding sash designs — crafted for durability, ventilation, and a polished aesthetic.
+        </p>
+      </div>
+
+      <!-- Card 3 — Doors -->
+      <div class="service-card bg-white rounded-2xl p-8 border border-wood-pale shadow-sm">
+        <div class="w-14 h-14 rounded-xl bg-wood-pale flex items-center justify-center mb-6">
+          <svg class="w-8 h-8 text-wood" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+            <rect x="4" y="2" width="13" height="21" rx="1.5" stroke="currentColor"/>
+            <circle cx="15" cy="12.5" r="1" fill="currentColor"/>
+            <line x1="17" y1="2" x2="20" y2="4" stroke="currentColor" stroke-linecap="round"/>
+            <line x1="17" y1="23" x2="20" y2="21" stroke="currentColor" stroke-linecap="round"/>
+            <line x1="20" y1="4" x2="20" y2="21" stroke="currentColor" stroke-linecap="round"/>
+            <line x1="7" y1="7" x2="13" y2="7" stroke="currentColor" stroke-linecap="round"/>
+            <line x1="7" y1="10" x2="13" y2="10" stroke="currentColor" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl font-bold text-wood-dark">Doors</h3>
+        <p class="mt-2 text-charcoal-light text-sm leading-relaxed font-body">
+          Main entrance doors, interior panel doors, and frame fitting — solid wood or engineered, finished with lacquer or varnish.
+        </p>
+      </div>
+
+      <!-- Card 4 — Interior Carpentry -->
+      <div class="service-card bg-white rounded-2xl p-8 border border-wood-pale shadow-sm">
+        <div class="w-14 h-14 rounded-xl bg-wood-pale flex items-center justify-center mb-6">
+          <svg class="w-8 h-8 text-wood" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+            <path d="M3 21l9-9m0 0l4-4m-4 4L8 8m4 4l4-4m0 0l3-3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14.5 4.5l5 5-1.5 1.5-5-5 1.5-1.5z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3 21h4l9.5-9.5-4-4L3 17v4z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl font-bold text-wood-dark">Interior Carpentry</h3>
+        <p class="mt-2 text-charcoal-light text-sm leading-relaxed font-body">
+          False ceilings, wall panelling, TV units, loft beds, and all bespoke woodwork to transform any interior space.
+        </p>
+      </div>
+
+      <!-- Card 5 — Pooja Room Unit -->
+      <div class="service-card bg-white rounded-2xl p-8 border border-wood-pale shadow-sm">
+        <div class="w-14 h-14 rounded-xl bg-wood-pale flex items-center justify-center mb-6">
+          <svg class="w-8 h-8 text-wood" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+            <path d="M12 2L8 6H4v2h1l1 13h12l1-13h1V6h-4L12 2z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="4" y1="9" x2="20" y2="9" stroke="currentColor" stroke-linecap="round"/>
+            <path d="M10 13h4v4h-4z" stroke="currentColor"/>
+            <path d="M9 9v12M15 9v12" stroke="currentColor" stroke-linecap="round" opacity="0.5"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl font-bold text-wood-dark">Pooja Room Unit</h3>
+        <p class="mt-2 text-charcoal-light text-sm leading-relaxed font-body">
+          Beautifully crafted wooden pooja mandirs with intricate carvings, shelving, and doors — built with reverence and fine detail.
+        </p>
+      </div>
+
+      <!-- Card 6 — Furniture Repairs -->
+      <div class="service-card bg-white rounded-2xl p-8 border border-wood-pale shadow-sm">
+        <div class="w-14 h-14 rounded-xl bg-wood-pale flex items-center justify-center mb-6">
+          <svg class="w-8 h-8 text-wood" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+            <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl font-bold text-wood-dark">Furniture Repairs</h3>
+        <p class="mt-2 text-charcoal-light text-sm leading-relaxed font-body">
+          Broken joints, worn surfaces, damaged panels — we restore your existing furniture to its original strength and beauty at affordable rates.
+        </p>
+      </div>
+
+      <!-- Card 7 — Cupboards -->
+      <div class="service-card bg-white rounded-2xl p-8 border border-wood-pale shadow-sm">
+        <div class="w-14 h-14 rounded-xl bg-wood-pale flex items-center justify-center mb-6">
+          <svg class="w-8 h-8 text-wood" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor"/>
+            <line x1="12" y1="3" x2="12" y2="21" stroke="currentColor"/>
+            <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor"/>
+            <circle cx="10" cy="7.5" r="1" fill="currentColor"/>
+            <circle cx="14" cy="7.5" r="1" fill="currentColor"/>
+            <circle cx="10" cy="16.5" r="1" fill="currentColor"/>
+            <circle cx="14" cy="16.5" r="1" fill="currentColor"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl font-bold text-wood-dark">Cupboards</h3>
+        <p class="mt-2 text-charcoal-light text-sm leading-relaxed font-body">
+          Built-in and freestanding cupboards for kitchens, bedrooms, and living rooms — designed for maximum storage and a clean, lasting finish.
+        </p>
+      </div>
+
+      <!-- Card 8 — POP Ceiling -->
+      <div class="service-card bg-white rounded-2xl p-8 border border-wood-pale shadow-sm">
+        <div class="w-14 h-14 rounded-xl bg-wood-pale flex items-center justify-center mb-6">
+          <svg class="w-8 h-8 text-wood" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+            <path d="M3 6h18" stroke="currentColor" stroke-linecap="round"/>
+            <path d="M3 6c0 0 2 3 9 3s9-3 9-3" stroke="currentColor" stroke-linecap="round"/>
+            <path d="M6 9v2M12 9v4M18 9v2" stroke="currentColor" stroke-linecap="round"/>
+            <path d="M4 15h16" stroke="currentColor" stroke-linecap="round"/>
+            <rect x="3" y="15" width="18" height="5" rx="1" stroke="currentColor"/>
+            <line x1="8" y1="15" x2="8" y2="20" stroke="currentColor" stroke-linecap="round" opacity="0.5"/>
+            <line x1="16" y1="15" x2="16" y2="20" stroke="currentColor" stroke-linecap="round" opacity="0.5"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl font-bold text-wood-dark">POP Ceiling</h3>
+        <p class="mt-2 text-charcoal-light text-sm leading-relaxed font-body">
+          Elegant Plaster of Paris false ceiling designs — from simple borders to layered coves and recessed lighting panels for every room.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     GALLERY  (Filterable + Lightbox)
+════════════════════════════════════════ -->
+<section id="gallery" class="py-24 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <!-- Heading -->
+    <div class="text-center mb-12">
+      <span class="ring-accent"></span>
+      <h2 class="font-display text-4xl font-bold text-wood-dark mt-4">Our Work</h2>
+      <p class="mt-3 text-charcoal-light font-body max-w-lg mx-auto">
+        Browse by category — click any image to view it in full.
+      </p>
+    </div>
+
+    <!-- ── Category Filter Tabs ── -->
+    <div class="flex flex-wrap justify-center gap-3 mb-10" id="filter-tabs">
+      <button data-filter="all"
+        class="filter-btn active-tab font-body text-sm font-bold uppercase tracking-widest px-6 py-2.5 rounded-full border-2 border-wood-light bg-wood-light text-white transition-all duration-250">
+        All Work
+      </button>
+      <button data-filter="kitchen"
+        class="filter-btn font-body text-sm font-bold uppercase tracking-widest px-6 py-2.5 rounded-full border-2 border-wood-pale text-wood hover:border-wood-light hover:text-wood-light transition-all duration-250">
+        Kitchen
+      </button>
+      <button data-filter="bedroom"
+        class="filter-btn font-body text-sm font-bold uppercase tracking-widest px-6 py-2.5 rounded-full border-2 border-wood-pale text-wood hover:border-wood-light hover:text-wood-light transition-all duration-250">
+        Bedroom
+      </button>
+      <button data-filter="wardrobe"
+        class="filter-btn font-body text-sm font-bold uppercase tracking-widest px-6 py-2.5 rounded-full border-2 border-wood-pale text-wood hover:border-wood-light hover:text-wood-light transition-all duration-250">
+        Wardrobe
+      </button>
+      <button data-filter="living"
+        class="filter-btn font-body text-sm font-bold uppercase tracking-widest px-6 py-2.5 rounded-full border-2 border-wood-pale text-wood hover:border-wood-light hover:text-wood-light transition-all duration-250">
+        Living Room
+      </button>
+      <button data-filter="window"
+        class="filter-btn font-body text-sm font-bold uppercase tracking-widest px-6 py-2.5 rounded-full border-2 border-wood-pale text-wood hover:border-wood-light hover:text-wood-light transition-all duration-250">
+        Window & Doors
+      </button>
+      <button data-filter="cupboard"
+        class="filter-btn font-body text-sm font-bold uppercase tracking-widest px-6 py-2.5 rounded-full border-2 border-wood-pale text-wood hover:border-wood-light hover:text-wood-light transition-all duration-250">
+        Cupboards
+      </button>
+    </div>
+
+    <!-- ── Gallery Grid ── -->
+    <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 gap-5">
+
+      <!-- KITCHEN -->
+      <div class="gallery-card" data-category="kitchen">
+        <div class="gallery-thumb rounded-2xl overflow-hidden relative cursor-pointer bg-wood-pale"
+             style="height:230px;"
+             onclick="openLightbox('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1400&auto=format&fit=crop&q=95','Modular Kitchen','Kitchen')">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&auto=format&fit=crop&q=85" alt="Modular Kitchen" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-wood-dark/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+            <div>
+              <p class="text-wood-light text-xs uppercase tracking-widest font-body mb-1">Kitchen</p>
+              <p class="text-white font-display font-bold text-lg">Modular Kitchen</p>
+              <p class="text-white/70 text-xs font-body mt-1">Click to enlarge</p>
+            </div>
+          </div>
+          <div class="absolute top-3 right-3 bg-wood-light/90 text-white text-xs font-body font-bold uppercase tracking-widest px-3 py-1 rounded-full">Kitchen</div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="kitchen">
+        <div class="gallery-thumb rounded-2xl overflow-hidden relative cursor-pointer bg-wood-pale"
+             style="height:230px;"
+             onclick="openLightbox('https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=1400&auto=format&fit=crop&q=95','Kitchen Cabinets','Kitchen')">
+          <img src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=700&auto=format&fit=crop&q=85" alt="Kitchen Cabinets" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-wood-dark/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+            <div>
+              <p class="text-wood-light text-xs uppercase tracking-widest font-body mb-1">Kitchen</p>
+              <p class="text-white font-display font-bold text-lg">Kitchen Cabinets</p>
+              <p class="text-white/70 text-xs font-body mt-1">Click to enlarge</p>
+            </div>
+          </div>
+          <div class="absolute top-3 right-3 bg-wood-light/90 text-white text-xs font-body font-bold uppercase tracking-widest px-3 py-1 rounded-full">Kitchen</div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="kitchen">
+        <div class="gallery-thumb rounded-2xl overflow-hidden relative cursor-pointer bg-wood-pale"
+             style="height:230px;"
+             onclick="openLightbox('https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=1400&auto=format&fit=crop&q=95','Modern Kitchen Design','Kitchen')">
+          <img src="https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=700&auto=format&fit=crop&q=85" alt="Modern Kitchen" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-wood-dark/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+            <div>
+              <p class="text-wood-light text-xs uppercase tracking-widest font-body mb-1">Kitchen</p>
+              <p class="text-white font-display font-bold text-lg">Modern Kitchen</p>
+              <p class="text-white/70 text-xs font-body mt-1">Click to enlarge</p>
+            </div>
+          </div>
+          <div class="absolute top-3 right-3 bg-wood-light/90 text-white text-xs font-body font-bold uppercase tracking-widest px-3 py-1 rounded-full">Kitchen</div>
+        </div>
+      </div>
+
+      <!-- BEDROOM -->
+      <div class="gallery-card" data-category="bedroom">
+        <div class="gallery-thumb rounded-2xl overflow-hidden relative cursor-pointer bg-wood-pale"
+             style="height:230px;"
+             onclick="openLightbox('https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=1400&auto=format&fit=crop&q=95','Bedroom Interior','Bedroom')">
+          <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=700&auto=format&fit=crop&q=85" alt="Bedroom Interior" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-wood-dark/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+            <div>
+              <p class="text-wood-light text-xs uppercase tracking-widest font-body mb-1">Bedroom</p>
+              <p class="text-white font-display font-bold text-lg">Bedroom Interior</p>
+              <p class="text-white/70 text-xs font-body mt-1">Click to enlarge</p>
+            </div>
+          </div>
+          <div class="absolute top-3 right-3 bg-wood-light/90 text-white text-xs font-body font-bold uppercase tracking-widest px-3 py-1 rounded-full">Bedroom</div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="bedroom">
+        <div class="gallery-thumb rounded-2xl overflow-hidden relative cursor-pointer bg-wood-pale"
+             style="height:230px;"
+             onclick="openLightbox('https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=1400&auto=format&fit=crop&q=95','Master Bedroom','Bedroom')">
+          <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=700&auto=format&fit=crop&q=85" alt="Master Bedroom" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-wood-dark/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+            <div>
+              <p class="text-wood-light text-xs uppercase tracking-widest font-body mb-1">Bedroom</p>
+              <p class="text-white font-display font-bold text-lg">Master Bedroom</p>
+              <p class="text-white/70 text-xs font-body mt-1">Click to enlarge</p>
+            </div>
+          </div>
+          <div class="absolute top-3 right-3 bg-wood-light/90 text-white text-xs font-body font-bold uppercase tracking-widest px-3 py-1 rounded-full">Bedroom</div>
+        </div>
+      </div>
+
+      <!-- WARDROBE -->
+      <div class="gallery-card" data-category="wardrobe">
+        <div class="gallery-thumb rounded-2xl overflow-hidden relative cursor-pointer bg-wood-pale"
+             style="height:230px;"
+             onclick="openLightbox('https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=1400&auto=format&fit=crop&q=95','Wooden Wardrobe','Wardrobe')">
+          <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=700&auto=format&fit=crop&q=85" alt="Wooden Wardrobe" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-wood-dark/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+            <div>
+              <p class="text-wood-light text-xs uppercase tracking-widest font-body mb-1">Wardrobe</p>
+              <p class="text-white font-display font-bold text-lg">Wooden Wardrobe</p>
+              <p class="text-white/70 text-xs font-body mt-1">Click to enlarge</p>
+            </div>
+          </div>
+          <div class="absolute top-3 right-3 bg-wood-light/90 text-white text-xs font-body font-bold uppercase tracking-widest px-3 py-1 rounded-full">Wardrobe</div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="wardrobe">
+        <div class="gallery-thumb rounded-2xl overflow-hidden relative cursor-pointer bg-wood-pale"
+             style="height:230px;"
+             onclick="openLightbox('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&auto=format&fit=crop&q=95','Sliding Wardrobe','Wardrobe')">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&auto=format&fit=crop&q=85" alt="Sliding Wardrobe" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-wood-dark/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+            <div>
+              <p class="text-wood-light text-xs uppercase tracking-widest font-body mb-1">Wardrobe</p>
+              <p class="text-white font-display font-bold text-lg">Sliding Wardrobe</p>
+              <p class="text-white/70 text-xs font-body mt-1">Click to enlarge</p>
+            </div>
+          </div>
+          <div class="absolute top-3 right-3 bg-wood-light/90 text-white text-xs font-body font-bold uppercase tracking-widest px-3 py-1 rounded-full">Wardrobe</div>
+        </div>
+      </div>
+
+      <!-- LIVING ROOM -->
+      <div class="gallery-card" data-category="living">
+        <div class="gallery-thumb rounded-2xl overflow-hidden relative cursor-pointer bg-wood-pale"
+             style="height:230px;"
+             onclick="openLightbox('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1400&auto=format&fit=crop&q=95','TV Unit & Wall Panel','Living Room')">
+          <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=700&auto=format&fit=crop&q=85" alt="TV Unit" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-wood-dark/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+            <div>
+              <p class="text-wood-light text-xs uppercase tracking-widest font-body mb-1">Living Room</p>
+              <p class="text-white font-display font-bold text-lg">TV Unit &amp; Panel</p>
+              <p class="text-white/70 text-xs font-body mt-1">Click to enlarge</p>
+            </div>
+          </div>
+          <div class="absolute top-3 right-3 bg-wood-light/90 text-white text-xs font-body font-bold uppercase tracking-widest px-3 py-1 rounded-full">Living Room</div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="living">
+        <div class="gallery-thumb rounded-2xl overflow-hidden relative cursor-pointer bg-wood-pale"
+             style="height:230px;"
+             onclick="openLightbox('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1400&auto=format&fit=crop&q=95','Living Room Sofa','Living Room')">
+          <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=700&auto=format&fit=crop&q=85" alt="Living Room" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-wood-dark/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+            <div>
+              <p class="text-wood-light text-xs uppercase tracking-widest font-body mb-1">Living Room</p>
+              <p class="text-white font-display font-bold text-lg">Living Room Unit</p>
+              <p class="text-white/70 text-xs font-body mt-1">Click to enlarge</p>
+            </div>
+          </div>
+          <div class="absolute top-3 right-3 bg-wood-light/90 text-white text-xs font-body font-bold uppercase tracking-widest px-3 py-1 rounded-full">Living Room</div>
+        </div>
+      </div>
+
+      <!-- WINDOW & DOORS -->
+      <div class="gallery-card" data-category="window">
+        <div class="gallery-thumb rounded-2xl overflow-hidden relative cursor-pointer bg-wood-pale"
+             style="height:230px;"
+             onclick="openLightbox('https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1400&auto=format&fit=crop&q=95','Wooden Window Frame','Window & Doors')">
+          <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=700&auto=format&fit=crop&q=85" alt="Wooden Window" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-wood-dark/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+            <div>
+              <p class="text-wood-light text-xs uppercase tracking-widest font-body mb-1">Window & Doors</p>
+              <p class="text-white font-display font-bold text-lg">Wooden Window</p>
+              <p class="text-white/70 text-xs font-body mt-1">Click to enlarge</p>
+            </div>
+          </div>
+          <div class="absolute top-3 right-3 bg-wood-light/90 text-white text-xs font-body font-bold uppercase tracking-widest px-3 py-1 rounded-full">Window</div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="window">
+        <div class="gallery-thumb rounded-2xl overflow-hidden relative cursor-pointer bg-wood-pale"
+             style="height:230px;"
+             onclick="openLightbox('https://images.unsplash.com/photo-1558618047-f4e60cce6ff4?w=1400&auto=format&fit=crop&q=95','Wooden Door Design','Window & Doors')">
+          <img src="https://images.unsplash.com/photo-1558618047-f4e60cce6ff4?w=700&auto=format&fit=crop&q=85" alt="Wooden Door" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-wood-dark/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+            <div>
+              <p class="text-wood-light text-xs uppercase tracking-widest font-body mb-1">Window & Doors</p>
+              <p class="text-white font-display font-bold text-lg">Wooden Door</p>
+              <p class="text-white/70 text-xs font-body mt-1">Click to enlarge</p>
+            </div>
+          </div>
+          <div class="absolute top-3 right-3 bg-wood-light/90 text-white text-xs font-body font-bold uppercase tracking-widest px-3 py-1 rounded-full">Door</div>
+        </div>
+      </div>
+
+      <!-- CUPBOARDS -->
+      <div class="gallery-card" data-category="cupboard">
+        <div class="gallery-thumb rounded-2xl overflow-hidden relative cursor-pointer bg-wood-pale"
+             style="height:230px;"
+             onclick="openLightbox('https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=1400&auto=format&fit=crop&q=95','Custom Cupboard','Cupboards')">
+          <img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=700&auto=format&fit=crop&q=85" alt="Custom Cupboard" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-wood-dark/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+            <div>
+              <p class="text-wood-light text-xs uppercase tracking-widest font-body mb-1">Cupboards</p>
+              <p class="text-white font-display font-bold text-lg">Custom Cupboard</p>
+              <p class="text-white/70 text-xs font-body mt-1">Click to enlarge</p>
+            </div>
+          </div>
+          <div class="absolute top-3 right-3 bg-wood-light/90 text-white text-xs font-body font-bold uppercase tracking-widest px-3 py-1 rounded-full">Cupboard</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- No results message -->
+    <div id="no-results" class="hidden text-center py-16">
+      <svg class="w-16 h-16 text-wood-pale mx-auto mb-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909"/>
+      </svg>
+      <p class="font-display text-xl text-wood-dark">No photos yet in this category.</p>
+      <p class="text-charcoal-light font-body mt-2">Upload your own photos to fill this section!</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     LIGHTBOX
+════════════════════════════════════════ -->
+<div id="lightbox" class="fixed inset-0 z-[999] flex items-center justify-center hidden" style="background:rgba(20,8,2,0.95);">
+  <!-- Close btn -->
+  <button onclick="closeLightbox()"
+    class="absolute top-5 right-5 text-white/80 hover:text-white transition-colors z-10">
+    <svg class="w-9 h-9" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+    </svg>
+  </button>
+  <!-- Prev -->
+  <button id="lb-prev" onclick="lightboxNav(-1)"
+    class="absolute left-4 text-white/70 hover:text-white transition-colors z-10 bg-wood/40 hover:bg-wood rounded-full p-3">
+    <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+    </svg>
+  </button>
+  <!-- Next -->
+  <button id="lb-next" onclick="lightboxNav(1)"
+    class="absolute right-4 text-white/70 hover:text-white transition-colors z-10 bg-wood/40 hover:bg-wood rounded-full p-3">
+    <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+    </svg>
+  </button>
+  <!-- Image -->
+  <div class="flex flex-col items-center gap-4 px-16 max-w-5xl w-full">
+    <img id="lb-img" src="" alt="" class="max-h-[78vh] max-w-full rounded-2xl shadow-2xl object-contain transition-opacity duration-300"/>
+    <div class="text-center">
+      <p id="lb-category" class="text-wood-light text-xs uppercase tracking-widest font-body mb-1"></p>
+      <p id="lb-title" class="text-white font-display text-2xl font-bold"></p>
+      <p id="lb-counter" class="text-white/40 font-body text-sm mt-1"></p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     WHY CHOOSE US
+════════════════════════════════════════ -->
+<section id="why-us" class="py-24 hero-bg relative overflow-hidden">
+  <!-- faint wood grain lines -->
+  <div class="absolute inset-0 pointer-events-none"
+       style="background:repeating-linear-gradient(170deg, transparent 0px, transparent 40px, rgba(160,98,42,.06) 40px, rgba(160,98,42,.06) 41px);">
+  </div>
+
+  <div class="max-w-6xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-16">
+      <span class="ring-accent"></span>
+      <h2 class="font-display text-4xl font-bold text-wood-pale mt-4">Why Choose Us</h2>
+      <p class="mt-3 text-wood-pale/60 font-body max-w-lg mx-auto">
+        We don't just build furniture — we build trust, one project at a time.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+      <div class="text-center group">
+        <div class="w-20 h-20 rounded-full bg-wood/50 border-2 border-wood-light mx-auto flex items-center justify-center mb-6 group-hover:bg-wood-light transition-colors duration-300">
+          <svg class="w-10 h-10 text-wood-pale" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-2xl font-bold text-wood-pale mb-3">15+ Years Experience</h3>
+        <p class="text-wood-pale/60 font-body text-sm leading-relaxed">
+          Over a decade and a half of crafting beautiful interiors across Hyderabad, earning trust through quality and consistency.
+        </p>
+      </div>
+
+      <div class="text-center group">
+        <div class="w-20 h-20 rounded-full bg-wood/50 border-2 border-wood-light mx-auto flex items-center justify-center mb-6 group-hover:bg-wood-light transition-colors duration-300">
+          <svg class="w-10 h-10 text-wood-pale" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-2xl font-bold text-wood-pale mb-3">Premium Materials</h3>
+        <p class="text-wood-pale/60 font-body text-sm leading-relaxed">
+          We use only certified, termite-resistant hardwoods and top-grade hardware — no compromises on longevity.
+        </p>
+      </div>
+
+      <div class="text-center group">
+        <div class="w-20 h-20 rounded-full bg-wood/50 border-2 border-wood-light mx-auto flex items-center justify-center mb-6 group-hover:bg-wood-light transition-colors duration-300">
+          <svg class="w-10 h-10 text-wood-pale" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-2xl font-bold text-wood-pale mb-3">On-Time Delivery</h3>
+        <p class="text-wood-pale/60 font-body text-sm leading-relaxed">
+          We respect your time. Every project ships on the agreed date with zero shortcuts on craftsmanship.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Stats bar -->
+    <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-wood/30 pt-12">
+      <div class="text-center">
+        <p class="font-display text-5xl font-black text-wood-light">500+</p>
+        <p class="text-wood-pale/60 font-body text-sm mt-1 uppercase tracking-widest">Projects Done</p>
+      </div>
+      <div class="text-center">
+        <p class="font-display text-5xl font-black text-wood-light">15+</p>
+        <p class="text-wood-pale/60 font-body text-sm mt-1 uppercase tracking-widest">Years Active</p>
+      </div>
+      <div class="text-center">
+        <p class="font-display text-5xl font-black text-wood-light">100%</p>
+        <p class="text-wood-pale/60 font-body text-sm mt-1 uppercase tracking-widest">Satisfaction</p>
+      </div>
+      <div class="text-center">
+        <p class="font-display text-5xl font-black text-wood-light">5★</p>
+        <p class="text-wood-pale/60 font-body text-sm mt-1 uppercase tracking-widest">Avg Rating</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     CONTACT / FOOTER
+════════════════════════════════════════ -->
+<section id="contact" class="py-24 bg-cream">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <span class="ring-accent"></span>
+      <h2 class="font-display text-4xl font-bold text-wood-dark mt-4">Get in Touch</h2>
+      <p class="mt-3 text-charcoal-light font-body max-w-md mx-auto">
+        Ready to transform your space? Drop us a message or reach us directly on WhatsApp.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+
+      <!-- Contact info -->
+      <div class="space-y-8">
+        <div class="flex items-start gap-5">
+          <div class="w-12 h-12 rounded-xl bg-wood-pale flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-wood" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-display font-bold text-wood-dark">Location</p>
+            <p class="text-charcoal-light font-body text-sm mt-1">Serilingampally, Hyderabad, Telangana</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-5">
+          <div class="w-12 h-12 rounded-xl bg-wood-pale flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-wood" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-display font-bold text-wood-dark">Phone</p>
+            <a href="tel:+919394027583" class="text-wood hover:text-wood-light font-body text-sm mt-1 block transition-colors">
+              +91 93940 27583
+            </a>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-5">
+          <div class="w-12 h-12 rounded-xl bg-wood-pale flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-wood" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-display font-bold text-wood-dark">Email</p>
+            <a href="mailto:melojubunny9288@gmail.com" class="text-wood hover:text-wood-light font-body text-sm mt-1 block transition-colors">
+              melojubunny9288@gmail.com
+            </a>
+          </div>
+        </div>
+
+        <!-- WhatsApp CTA -->
+        <a href="https://wa.me/919394027583?text=Hi%2C%20I%20would%20like%20to%20get%20a%20quote%20from%20Srinivas%20Wood%20And%20Interiors."
+           target="_blank" rel="noopener noreferrer"
+           class="wa-btn inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#1ebe5a] text-white font-body font-bold uppercase tracking-widest text-sm px-8 py-4 rounded-xl transition-all duration-300 mt-4">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Chat on WhatsApp
+        </a>
+      </div>
+
+      <!-- Simple contact form -->
+      <div class="bg-white rounded-2xl p-8 shadow-sm border border-wood-pale">
+        <h3 class="font-display text-2xl font-bold text-wood-dark mb-6">Send a Message</h3>
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-bold text-charcoal font-body mb-1 uppercase tracking-widest">Name</label>
+            <input type="text" placeholder="Your full name"
+                   class="w-full border border-wood-pale rounded-lg px-4 py-3 text-sm font-body focus:outline-none focus:ring-2 focus:ring-wood-light transition"/>
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-charcoal font-body mb-1 uppercase tracking-widest">Phone</label>
+            <input type="tel" placeholder="+91 98765 43210"
+                   class="w-full border border-wood-pale rounded-lg px-4 py-3 text-sm font-body focus:outline-none focus:ring-2 focus:ring-wood-light transition"/>
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-charcoal font-body mb-1 uppercase tracking-widest">Service</label>
+            <select class="w-full border border-wood-pale rounded-lg px-4 py-3 text-sm font-body focus:outline-none focus:ring-2 focus:ring-wood-light transition bg-white">
+              <option value="">Select a service…</option>
+              <option>Custom Cupboards</option>
+              <option>Modular Kitchen</option>
+              <option>Wooden Wardrobe</option>
+              <option>Interior Woodwork</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-charcoal font-body mb-1 uppercase tracking-widest">Message</label>
+            <textarea rows="3" placeholder="Describe your project briefly…"
+                      class="w-full border border-wood-pale rounded-lg px-4 py-3 text-sm font-body focus:outline-none focus:ring-2 focus:ring-wood-light transition resize-none"></textarea>
+          </div>
+          <button type="button"
+                  class="w-full bg-wood-light hover:bg-wood text-white font-body font-bold uppercase tracking-widest text-sm py-4 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-wood/30">
+            Request a Quote
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FOOTER BAR
+════════════════════════════════════════ -->
+<footer class="bg-wood-dark py-8 text-center">
+  <p class="text-wood-pale/50 font-body text-xs tracking-widest uppercase">
+    © 2025 Srinivas Wood And Interiors · Hyderabad · Crafted with ♥
+  </p>
+</footer>
+
+<!-- ═══════════════════════════════════════
+     JS
+════════════════════════════════════════ -->
+<script>
+  // Mobile menu toggle
+  const btn  = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+  function closeMobile() { menu.classList.add('hidden'); }
+
+  // Intersection observer for fade-up on cards
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.service-card, .gallery-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(28px)';
+    el.style.transition = 'opacity .6s ease, transform .6s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
